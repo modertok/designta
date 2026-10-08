@@ -10,6 +10,16 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+
+# якщо папку розпаковано з zip без git — ініціалізуємо репозиторій (нейтральний автор; змінити можна пізніше)
+if (-not (Test-Path ".git")) {
+  git init -b main | Out-Null
+  git config user.name "ThreadScope"
+  git config user.email "threadscope@users.noreply.github.com"
+  git add -A
+  git commit -q -m "Initial commit: ThreadScope landing, demo web app and browser extension mockup"
+}
+
 if (-not $User) { $User = Read-Host "GitHub-логін (університетський акаунт)" }
 $sec = Read-Host "Токен (repo + workflow)" -AsSecureString
 $token = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($sec))
