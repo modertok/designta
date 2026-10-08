@@ -5,8 +5,8 @@
 # Запуск (PowerShell, у папці проєкту):  .\publish.ps1
 
 param(
-  [string]$User,
-  [string]$Repo = "threadscope"
+  [string]$User = "modertok",
+  [string]$Repo = "designta"
 )
 
 $ErrorActionPreference = "Stop"
